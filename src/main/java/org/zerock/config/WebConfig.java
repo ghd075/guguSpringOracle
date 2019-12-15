@@ -2,6 +2,7 @@ package org.zerock.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+//Tomcat 구동과 관련된 설정
 public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
@@ -11,14 +12,12 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Class[] {ServletConfig.class};
 	}
 
 	@Override
 	protected String[] getServletMappings() {
-		// TODO Auto-generated method stub
-		return null;
+		return new String[] {"/"};
 	}
 
 }
