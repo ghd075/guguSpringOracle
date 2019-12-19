@@ -12,7 +12,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="org.zerock.controller">
-		<level value="info" />
+		<level value="debug" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
@@ -32,7 +32,7 @@
 		<level value="info" />
 	</logger> -->
 
-    <logger name="jdbc.audit">
+<!--     <logger name="jdbc.audit">
         <level value="warn" />
     </logger>
     <logger name="jdbc.resulteset">
@@ -40,11 +40,11 @@
     </logger>
     <logger name="jdbc.connection">
         <level value="warn" />
-    </logger>
+    </logger> -->
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="info" />
+		<priority value="debug" />
 		<appender-ref ref="console" />
 	</root>
 	
