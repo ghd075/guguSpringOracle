@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 //서블릿 관련 설정
 @EnableWebMvc
-@ComponentScan(basePackages = {"org.zerock.controller"})
+@ComponentScan(basePackages = {"org.zerock.controller", "org.zerock.exception"})
 public class ServletConfig implements WebMvcConfigurer {
 
 	@Override
