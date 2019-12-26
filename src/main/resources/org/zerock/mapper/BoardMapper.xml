@@ -28,4 +28,13 @@
     <delete id="delete">
     	DELETE tbl_board WHERE bno = #{bno}
     </delete>
+    
+    <update id="update">
+        UPDATE tbl_board
+        SET title = #{title},
+            content = #{content},
+            writer = #{writer},
+            updateDate = sysdate
+        WHERE bno = #{bno}    
+    </update>
 </mapper>
