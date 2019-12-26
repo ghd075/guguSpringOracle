@@ -24,4 +24,8 @@
     <select id="read" resultType="org.zerock.domain.BoardVO">
     	SELECT * FROM tbl_board WHERE bno = #{bno}
     </select>
+    
+    <delete id="delete">
+    	DELETE tbl_board WHERE bno = #{bno}
+    </delete>
 </mapper>

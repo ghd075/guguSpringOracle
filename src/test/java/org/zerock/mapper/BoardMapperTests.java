@@ -59,5 +59,11 @@ public class BoardMapperTests {
 		
 		log.info(board);
 	}
+	
+	@Test
+	public void testDelete() {
+		
+		log.info("DELETE CONT : " + mapper.delete(3L));
+	}
 
 }
