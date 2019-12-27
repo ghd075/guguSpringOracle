@@ -13,7 +13,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@ComponentScan(basePackages = {"org.zerock"})
+@ComponentScan(basePackages = {"org.zerock,service"})
 @MapperScan(basePackages = {"org.zerock.mapper"})
 //Spring 에 관련된 설정. POJO. Java 영역 설정
 public class RootConfig {
