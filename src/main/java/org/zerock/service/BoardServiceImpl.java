@@ -30,8 +30,10 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardVO get(Long bno) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		log.info("get......" + bno);
+		
+		return mapper.read(bno);
 	}
 
 	@Override
