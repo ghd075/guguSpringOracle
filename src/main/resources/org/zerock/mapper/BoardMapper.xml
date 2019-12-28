@@ -14,8 +14,8 @@
     
     <insert id="insertSelectKey">
     	<selectKey keyProperty="bno" order="BEFORE" resultType="long">
-    		SELECT seq_board.nextval
-            FROM dual
+    		SELECT MAX(bno)+1
+			FROM tbl_board
     	</selectKey>
         INSERT INTO tbl_board (bno, title, content, writer)
         VALUES (#{bno}, #{title}, #{content}, #{writer})
