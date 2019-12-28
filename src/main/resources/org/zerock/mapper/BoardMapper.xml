@@ -3,7 +3,7 @@
 <mapper namespace="org.zerock.mapper.BoardMapper">
     <select id="getList" resultType="org.zerock.domain.BoardVO">
         <![CDATA[
-        SELECT * FROM tbl_board WHERE bno > 0
+        SELECT * FROM tbl_board WHERE bno > 0 ORDER BY bno DESC, regdate DESC
         ]]>
     </select>
     

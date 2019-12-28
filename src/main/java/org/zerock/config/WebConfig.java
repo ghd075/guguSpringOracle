@@ -1,7 +1,9 @@
 package org.zerock.config;
 
+import javax.servlet.Filter;
 import javax.servlet.ServletRegistration;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 //Tomcat 구동과 관련된 설정
@@ -28,4 +30,11 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 		registration.setInitParameter("throwExceptionIfNoHandlerFound", "true");
 	}
 	
+    @Override
+    protected Filter[] getServletFilters() {
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+        return new Filter[] {characterEncodingFilter};
+    }
 }
