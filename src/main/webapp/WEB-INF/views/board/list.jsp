@@ -79,6 +79,7 @@ $(document).ready(function(){
 	// 페이지 갱신 실행
 	history.replaceState({}, null, null);
 	
+	//모달창 호출
 	function checkModal(result) {
 		
 		if(result === '' || history.state) {
@@ -92,6 +93,7 @@ $(document).ready(function(){
 		$('#myModal').modal('show');
 	}
 	
+	//등록처리
 	$('#regBtn').on('click', function(){
 		self.location = '/board/register';
 	});
