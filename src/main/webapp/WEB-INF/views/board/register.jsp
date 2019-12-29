@@ -20,7 +20,7 @@
                         	<form role="form" action="/board/register" method="post">
                         		<div class="form-group">
                         			<label>Title</label>
-                        			<input class="form-control" name="title">
+                        			<input class="form-control" name="title" />
                         		</div>
                         		<div class="form-group">
                         			<label>Text area</label>
@@ -28,7 +28,7 @@
                         		</div>
                         		<div class="form-group">
                         			<label>Writer</label>
-                        			<input class="form-control" name="writer">
+                        			<input class="form-control" name="writer" />
                         		</div>
                         		<button type="submit" class="btn btn-default">Submit Button</button>
                         		<button type="reset" class="btn btn-default">Reset Button</button>

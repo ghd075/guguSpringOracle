@@ -6,7 +6,7 @@
 <%@include file="../includes/header.jsp" %>
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tables</h1>
+                    <h1 class="page-header">Board Tables</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -34,7 +34,7 @@
                                 <c:forEach items="${list}" var="board">
                                 	<tr>
                                 		<td>${board.bno}</td>
-                                		<td>${board.title}</td>
+                                		<td><a href="/board/get?bno=${board.bno}">${board.title}</a></td>
                                 		<td>${board.writer}</td>
                                 		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate}" /></td>
                                 		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate}" /></td>
@@ -55,7 +55,7 @@
 	                                    <div class="modal-body">처리가 완료되었습니다.</div>
 	                                    <div class="modal-footer">
 	                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	                                        <button type="button" class="btn btn-primary">Save changes</button>
+	                                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -76,9 +76,12 @@ $(document).ready(function(){
 	
 	checkModal(result);
 	
+	// 페이지 갱신 실행
+	history.replaceState({}, null, null);
+	
 	function checkModal(result) {
 		
-		if(result === '') {
+		if(result === '' || history.state) {
 			return;
 		}
 		
