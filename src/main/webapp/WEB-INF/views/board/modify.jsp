@@ -69,8 +69,8 @@ $(document).ready(function(){
 		// 목록이동
 		} else if(operation === 'list') {
 			//move to list
-			self.location = '/board/list';
-			return;
+			formObj.attr('action', '/board/list').attr('method','get');
+			formObj.empty();
 		}
 		
 		formObj.submit();
