@@ -12,4 +12,7 @@ public interface ReplyMapper {
 	
 	//삭제
 	public int delete(Long rno);
+	
+	//수정
+	public int update(ReplyVO replay);
 }
