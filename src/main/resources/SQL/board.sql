@@ -18,10 +18,11 @@ select * from tbl_board;
 
 commit;
 
-create table tbl_reply (
+CREATE TABLE tbl_reply (
     rno number(10, 0),
     bno number(10, 0) not null,
     reply varchar2(1000) not null,
+    replyer varchar2(50) not null,
     replyDate date default sysdate,
     updateDate date default sysdate
 );
@@ -32,3 +33,10 @@ alter table tbl_reply add constraint pk_reply primary key (rno);
 
 alter table tbl_reply add constraint fk_reply_board
 foreign key (bno) references tbl_board (bno);
+
+select * from tbl_board where rownum < 10 order by bno desc;
+
+drop sequence seq_reply;
+drop table tbl_reply;
+
+select * from tbl_reply order by bno desc;
