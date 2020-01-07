@@ -11,4 +11,8 @@
 		SELECT * FROM tbl_reply WHERE rno = #{rno}
 	</select>
 
+	<delete id="delete">
+		DELETE FROM tbl_reply WHERE rno = #{rno}
+	</delete>
+	
 </mapper>

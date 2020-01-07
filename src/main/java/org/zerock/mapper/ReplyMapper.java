@@ -9,4 +9,7 @@ public interface ReplyMapper {
 	
 	//조회
 	public ReplyVO read(Long bno);
+	
+	//삭제
+	public int delete(Long rno);
 }
