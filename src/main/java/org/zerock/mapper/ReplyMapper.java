@@ -12,7 +12,7 @@ public interface ReplyMapper {
 	public int insert(ReplyVO vo);
 	
 	//조회
-	public ReplyVO read(Long bno);
+	public ReplyVO read(Long rno);
 	
 	//삭제
 	public int delete(Long rno);
