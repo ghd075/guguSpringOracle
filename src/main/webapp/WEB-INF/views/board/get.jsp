@@ -54,8 +54,21 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	console.log(replyService);
-	
+	//댓글 관련
+	console.log('=======================');
+	console.log('JS TEST');
+
+	var bnoValue = '<c:out value="${board.bno}"/>';
+
+	//for replyService add test
+	//댓글 등록
+	replyService.add(
+		{reply:'JS TEST', replyer:'tester', bno:bnoValue}
+		,
+		function(result) {
+			alert('RESULT: ' + result);
+		}
+	);
 });
 </script>
             
