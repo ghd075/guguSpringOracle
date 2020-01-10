@@ -37,6 +37,8 @@
 								<input type="hidden" id="bno" name="bno" value="${board.bno}" />
 								<input type="hidden" name="pageNum" value="${cri.pageNum}" />
 								<input type="hidden" name="amount" value="${cri.amount}" />
+            					<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}" />
+								<input type="hidden" name="type" value="${pageMaker.cri.type}" />
 							</form>
 
 						</div>
@@ -46,6 +48,30 @@
                 </div>
             </div>
             <!-- /.row -->
+
+<script type="text/javascript" src="/resources/js/reply.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	//댓글 관련
+	console.log('=======================');
+	console.log('JS TEST');
+
+	var bnoValue = '<c:out value="${board.bno}"/>';
+
+	//for replyService add test
+	//댓글 등록
+	replyService.add(
+		{reply:'JS TEST', replyer:'tester', bno:bnoValue}
+		,
+		function(result) {
+			alert('RESULT: ' + result);
+		}
+	);
+});
+</script>
+            
 <script>
 $(document).ready(function(){
 	
@@ -63,6 +89,5 @@ $(document).ready(function(){
         operForm.submit();
     });
 });
-
 </script>
 <%@include file="../includes/footer.jsp" %>
