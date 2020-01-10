@@ -21,7 +21,7 @@ import lombok.extern.log4j.Log4j;
 public class ReplyMapperTests {
 	
 	//테스트 전에 해당 번호의 게시물이 존재하는지 반드시 확인할 것
-	private Long[] bnoArr = { 11L, 10L, 9L, 7L, 6L};
+	private Long[] bnoArr = { 1048476L, 1048475L, 1048474L, 1048473L, 1048472L};
 	
 	@Setter(onMethod_ = @Autowired)
 	private ReplyMapper mapper;

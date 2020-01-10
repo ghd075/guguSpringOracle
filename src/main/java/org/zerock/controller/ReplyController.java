@@ -27,19 +27,15 @@ import lombok.extern.log4j.Log4j;
 public class ReplyController {
 
 	private ReplyService service;
-	
-	@PostMapping(value = "/new", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> create(@RequestBody ReplyVO vo) {
-		
-		log.info("ReplyVO : " + vo);
-		
-		int insertCount = service.register(vo);
-		
-		log.info("Reply INSERT COUNT : " + insertCount);
-		
-		return insertCount == 1 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
-		//삼항 연산자 처리
-	}
+	 //consumes는 수신제한, produces는 출력 포멧 정의
+    @PostMapping(value = "/new", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
+    public ResponseEntity<String> create(@RequestBody ReplyVO vo) {
+        log.info("ReplyVO: " + vo);
+        int insertCount = service.register(vo);
+        log.info("Reply INSERT COUNT: " + insertCount);
+        return insertCount == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        //삼항 연산자로 처리
+    }
 	
 	@GetMapping(value = "/pages/{bno}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<ReplyVO>> getList(@PathVariable("page") int page, @PathVariable("bno") Long bno) {

@@ -58,15 +58,14 @@ $(document).ready(function(){
 	console.log('=======================');
 	console.log('JS TEST');
 
-	var bnoValue = '<c:out value="${board.bno}"/>';
+	var bnoValue = '${board.bno}';
 
 	//for replyService add test
 	//댓글 등록
 	replyService.add(
-		{reply:'JS TEST', replyer:'tester', bno:bnoValue}
-		,
-		function(result) {
-			alert('RESULT: ' + result);
+		{reply: "JS TEST", replyer: "tester", bno: bnoValue},
+		function (result) {
+			alert("RESULT: " + result);
 		}
 	);
 });
