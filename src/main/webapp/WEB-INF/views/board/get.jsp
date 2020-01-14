@@ -62,7 +62,7 @@ $(document).ready(function(){
 	var bnoValue = '${board.bno}';
 
 	//for replyService add test
-	//댓글 등록
+	// 댓글 등록
 /* 	replyService.add(
 		{reply: "JS TEST", replyer: "tester", bno: bnoValue},
 		function (result) {
@@ -71,11 +71,22 @@ $(document).ready(function(){
 	); */
 	//reply List Test
 	// 댓글 목록
-	replyService.getList({bno:bnoValue, page:1}, function(list){
+/* 	replyService.getList({bno:bnoValue, page:1}, function(list){
     
 		for(var i = 0,  len = list.length||0; i < len; i++ ){
 	  		console.log(list[i]);
 		}
+	}); */
+	// 10번 댓글 삭제 테스트
+	replyService.remove(10, function(count) {
+
+		console.log(count);
+
+		if (count === "success") {
+			alert("REMOVED");
+		}
+	}, function(err) {
+		alert('ERROR...');
 	});
 });
 </script>

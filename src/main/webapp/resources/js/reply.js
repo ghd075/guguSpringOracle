@@ -37,9 +37,28 @@ var replyService = (function() {
     			}
     		});
     	}
-    
+    // 삭제
+	function remove(rno, callback, error) {
+		$.ajax({
+			type : 'delete',
+			url : '/replies/' + rno,
+			success : function(deleteResult, status, xhr) {
+				if (callback) {
+					callback(deleteResult);
+				}
+			},
+			error : function(xhr, status, er) {
+				if (error) {
+					error(er);
+				}
+			}
+		});
+	}
+
+
 	return {
-        add:add,
-        getList : getList
+        add : add,
+        getList : getList,
+        remove : remove
 	};
 })();
