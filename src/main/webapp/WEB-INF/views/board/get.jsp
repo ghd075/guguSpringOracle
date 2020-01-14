@@ -78,7 +78,7 @@ $(document).ready(function(){
 		}
 	}); */
 	// 10번 댓글 삭제 테스트
-	replyService.remove(10, function(count) {
+/* 	replyService.remove(10, function(count) {
 
 		console.log(count);
 
@@ -87,7 +87,17 @@ $(document).ready(function(){
 		}
 	}, function(err) {
 		alert('ERROR...');
-	});
+	}); */
+	// 12번 댓글 수정
+	replyService.update({
+		rno : 12,
+		bno : bnoValue,
+		reply : "Modified Reply...."
+	}, function(result) {
+
+		alert("수정 완료...");
+
+	}); 
 });
 </script>
             
