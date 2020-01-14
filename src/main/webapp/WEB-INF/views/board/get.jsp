@@ -89,7 +89,7 @@ $(document).ready(function(){
 		alert('ERROR...');
 	}); */
 	// 12번 댓글 수정
-	replyService.update({
+/* 	replyService.update({
 		rno : 12,
 		bno : bnoValue,
 		reply : "Modified Reply...."
@@ -97,7 +97,10 @@ $(document).ready(function(){
 
 		alert("수정 완료...");
 
-	}); 
+	});  */
+	replyService.get(12, function(data){
+		console.log(data);
+	});
 });
 </script>
             
