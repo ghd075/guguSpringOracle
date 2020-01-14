@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@include file="../includes/header.jsp" %>
 
            <div class="row">
@@ -62,17 +63,18 @@ $(document).ready(function(){
 
 	//for replyService add test
 	//댓글 등록
-	// replyService.add(
-	// 	{reply: "JS TEST", replyer: "tester", bno: bnoValue},
-	// 	function (result) {
-	// 		alert("RESULT: " + result);
-	// 	}
-	// );
-	//댓글 목록
-	replyService.getList({bno: bnoValue, page: 1}, function (list) {
-
-		for(var i = 0, len = list.length || 0; i < len; i++) {
-			console.log(list[i]);
+/* 	replyService.add(
+		{reply: "JS TEST", replyer: "tester", bno: bnoValue},
+		function (result) {
+			alert("RESULT: " + result);
+		}
+	); */
+	//reply List Test
+	// 댓글 목록
+	replyService.getList({bno:bnoValue, page:1}, function(list){
+    
+		for(var i = 0,  len = list.length||0; i < len; i++ ){
+	  		console.log(list[i]);
 		}
 	});
 });
