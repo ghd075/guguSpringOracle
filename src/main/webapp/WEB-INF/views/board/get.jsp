@@ -53,39 +53,74 @@
 				<div class="col-lg-12">
 					<!-- /.panel -->
 					<div class="panel panel-default">
-						<i class="fa fa-comments fa-fw"></i> Reply
-					</div>
+						<div class="panel-heading">
+							<i class="fa fa-comments fa-fw"></i> Reply
+						</div>
 					
-					<!-- /.panel-heading -->
-					<div class="panel-body">
-						<ul class="chat">
-							<!-- start reply -->
-							<li class="left clearfix" data-rno='10'>
-								<div>
-									<div class="header">
-										<strong class="primary-font">user00</strong>
-										<small class="pull-right text-muted">2018-01-01 13:13</small>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<ul class="chat">
+								<!-- start reply -->
+								<li class="left clearfix" data-rno='10'>
+									<div>
+										<div class="header">
+											<strong class="primary-font">user00</strong>
+											<small class="pull-right text-muted">2018-01-01 13:13</small>
+										</div>
+										<p>Good job!</p>
 									</div>
-									<p>Good job!</p>
-								</div>
-							</li>
-							<!-- end reply -->
-						</ul>
-						<!-- ./ end ul -->
+								</li>
+								<!-- end reply -->
+							</ul>
+							<!-- ./ end ul -->
+						</div>
+						<!-- /.panel .chat-panel -->
 					</div>
-					<!-- /.panel .chat-panel -->
 				</div>
+				<!-- ./ end row -->
 			</div>
 <script type="text/javascript" src="/resources/js/reply.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
+
+	var bnoValue = '<c:out value="${board.bno}"/>';
+	var replyUL = $(".chat");
+
+	showList(1);
+
+	function showList(page) {
+		replyService.getList({bno:bnoValue, page: page || 1}, function(list){
+
+			var str="";
+			if(list == null || list.lenght == 0) {
+				replyUL.html("");
+
+				return;
+			}
+			for (var i = 0, len = list.length || 0; i < len; i++) {
+				str += "<li class='left clearfix' data-rno='" + list[i].rno + "'>";
+				str += "    <div><div class='header'><strong class='primary-font'>"
+					+ list[i].replyer + "</strong>"; 
+				str +="    <small class='pull-right text-muted'>"+list[i].replyDate+"</small></div>";
+				str +="    <p>"+list[i].reply+"</p></div></li>";
+			}
+
+			replyUL.html(str);
+		});
+	} //end showList
+
+});
+</script>
+
+<script type="text/javascript">
+/* $(document).ready(function(){
 	
 	//댓글 관련
 	console.log('=======================');
 	console.log('JS TEST');
 
-	var bnoValue = '${board.bno}';
+	var bnoValue = '${board.bno}'; */
 
 	//for replyService add test
 	// 댓글 등록
@@ -124,10 +159,10 @@ $(document).ready(function(){
 		alert("수정 완료...");
 
 	});  */
-	replyService.get(12, function(data){
+/* 	replyService.get(12, function(data){
 		console.log(data);
 	});
-});
+}); */
 </script>
             
 <script>
