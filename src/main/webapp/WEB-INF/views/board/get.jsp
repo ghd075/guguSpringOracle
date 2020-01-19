@@ -206,7 +206,7 @@ $(document).ready(function(){
 		replyService.get(rno, function (reply) {
 
             modalInputReply.val(reply.reply);
-            modalInputReplyer.val(reply.replyer);
+            modalInputReplyer.val(reply.replyer).attr("readonly", "readonly");
             modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly");
             modal.data("rno", reply.rno);
 
@@ -219,6 +219,36 @@ $(document).ready(function(){
 		});
 
 	});
+
+	// 댓글 수정
+	modalModBtn.on('click', function(e){
+
+		var reply = { rno : modal.data('rno'), reply : modalInputReply.val()};
+
+		replyService.update(reply, function(result){
+
+			alert(result);
+			modal.modal('hide');
+			showList(1);
+
+		});
+
+	});
+
+	// 댓글 삭제
+	modalRemoveBtn.on('click', function(e){
+
+		var rno = modal.data('rno');
+
+		replyService.remove(rno, function(result){
+
+			alert(result);
+			modal.modal('hide');
+			showList(1);
+
+		})
+
+	})
 
 });
 </script>
