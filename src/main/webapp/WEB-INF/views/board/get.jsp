@@ -157,6 +157,12 @@ $(document).ready(function(){
     var modalRegisterBtn = $("#modalRegisterBtn");
     var modalCloseBtn = $("#modalCloseBtn");
 
+    //모달 닫기
+    modalCloseBtn.on("click", function (e) {
+        e.preventDefault();
+        modal.modal("hide");
+    });
+
 	// 댓글등록
 	 $("#addReplyBtn").on("click", function (e) {
 		
@@ -186,6 +192,29 @@ $(document).ready(function(){
 				showList(1);
 
 			});
+
+		});
+
+	});
+
+	// 댓글 클릭 이벤트
+	$('.chat').on('click','li',function(e){
+
+		var rno = $(this).data('rno');
+
+		//console.log(rno);
+		replyService.get(rno, function (reply) {
+
+            modalInputReply.val(reply.reply);
+            modalInputReplyer.val(reply.replyer);
+            modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly");
+            modal.data("rno", reply.rno);
+
+            modal.find("button[id != 'modalCloseBtn']").hide();
+            modalModBtn.show();
+            modalRemoveBtn.show();
+
+			$('.modal').modal('show');
 
 		});
 
