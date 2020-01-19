@@ -175,21 +175,18 @@ $(document).ready(function(){
         $(".modal").modal("show");
         
         //댓글등록처리
-        modalRegisterBtn.on('click', function(e){
-
-			var reply = {
-				reply : modalInputReply.val(),
-				replyer : modalInputReplyer.val(),
-				bno : bnoValue
-			};
-			replyService.add(reply, function(result){
-
-				alert(result);
-
-				modal.find('input').val('');
-				modal.modal('hide');
-
-				showList(1);
+        modalRegisterBtn.on("click", function (e) {
+            var reply = {
+                reply: modalInputReply.val(),
+                replyer: modalInputReplyer.val(),
+                bno: bnoValue
+            };
+            replyService.add(reply, function (result) {
+                alert(result);
+                modal.find("input").val("");
+                modal.modal("hide");
+                
+                showList(1);
 
 			});
 
@@ -206,7 +203,7 @@ $(document).ready(function(){
 		replyService.get(rno, function (reply) {
 
             modalInputReply.val(reply.reply);
-            modalInputReplyer.val(reply.replyer).attr("readonly", "readonly");
+            modalInputReplyer.val(reply.replyer)
             modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly");
             modal.data("rno", reply.rno);
 
