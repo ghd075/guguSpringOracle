@@ -75,8 +75,12 @@
 							</ul>
 							<!-- ./ end ul -->
 						</div>
-						<!-- /.panel .chat-panel -->
+						<!-- End panel-body -->
+						<div class="panel-footer">
+
+						</div>
 					</div>
+					<!-- End panel .chat-panel -->
 				</div>
 				<!-- ./ end row -->
 			</div>
@@ -126,26 +130,92 @@ $(document).ready(function(){
 
 	//댓글 목록
 	function showList(page) {
-		replyService.getList({bno:bnoValue, page: page || 1}, function(list){
+
+		console.log('show list ' + page);
+
+		replyService.getList({bno:bnoValue, page: page || 1}, 
+		//페이징처리
+		function(replyCnt,list){
+
+			console.log('replyCnt : ' + replyCnt);
+			console.log('list : ' + list);
+			console.log(list);
+
+			if(page == -1) {
+				pageNum = Math.ceil(replyCnt/10.0);
+				showList(pageNum);
+				return;
+			}
 
 			var str="";
-			if(list == null || list.lenght == 0) {
-				replyUL.html("");
 
+			if(list == null || list.lenght == 0) {
+				//replyUL.html("");
 				return;
 			}
 			for (var i = 0, len = list.length || 0; i < len; i++) {
 				str += "<li class='left clearfix' data-rno='" + list[i].rno + "'>";
-				str += "    <div><div class='header'><strong class='primary-font'>"
-					+ list[i].replyer + "</strong>"; 
+				str += "    <div><div class='header'><strong class='primary-font'>["
+					+ list[i].rno + ']'	+ list[i].replyer + "</strong>"; 
 				str += "        <small class='pull-right text-muted'>" + replyService.displayTime(list[i].replyDate) + "</small></div>";
 				str +="    <p>"+list[i].reply+"</p></div></li>";
 			}
 
 			replyUL.html(str);
-		});
-	} //end showList
+
+			showReplyPage(replyCnt);
+		});	//end function list
+	} //end function showList
 	
+	// 댓글 페이징
+	var pageNum = 1;
+	var replyPageFooter = $(".panel-footer");
+
+    function showReplyPage(replyCnt) {
+        var endNum = Math.ceil(pageNum/10.0) * 10;
+        var startNum = endNum - 9;
+        var prev = startNum != 1;
+        var next = false;
+        if(endNum * 10 >= replyCnt) {
+            endNum = Math.ceil(replyCnt/10.0);
+        }
+        if(endNum * 10 < replyCnt) {
+            next = true;
+        }
+        var str = "<ul class='pagination pull-right'>";
+        if(prev) {
+            str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Previous</a></li>";
+        }
+        for(var i = startNum; i <= endNum; i++){
+            var active = pageNum == i ? "active" : "";
+            str += "<li class='page-item " + active + " '><a class='page-link' href='" + i + "'>" + i + "</a></li>";
+        }
+        if(next) {
+            str += "<li class='page-item'><a class='page-link' href='" + (endNum + 1) +"'>Next</a></li>";
+        }
+		str += "</ul></div>";
+		
+		console.log(str);
+
+        replyPageFooter.html(str);
+	}
+	
+	//댓글 페이지 클릭시 새로운 댓글을 가져오도록 처리
+	replyPageFooter.on('click', 'li a', function(e){
+
+		e.preventDefault();
+		console.log('page click');
+
+		var targetPageNum = $(this).attr('href');
+
+		console.log('targetPageNum : ' + targetPageNum);
+
+		pageNum = targetPageNum;
+
+		showList(pageNum);
+
+	});
+
     // Modal
     var modal = $(".modal");
     var modalInputReply = modal.find("input[name='reply']");
@@ -186,7 +256,9 @@ $(document).ready(function(){
                 modal.find("input").val("");
                 modal.modal("hide");
                 
-                showList(1);
+				//showList(1);
+				//페이징 처리는 등록후 -1을 전달해 마지막 페이지를 찾아서 다시 호출하게 함.
+                showList(-1);
 
 			});
 
@@ -226,7 +298,8 @@ $(document).ready(function(){
 
 			alert(result);
 			modal.modal('hide');
-			showList(1);
+			 // showList(1);
+			showList(pageNum);
 
 		});
 
@@ -241,7 +314,8 @@ $(document).ready(function(){
 
 			alert(result);
 			modal.modal('hide');
-			showList(1);
+			// showList(1);
+			showList(pageNum);
 
 		})
 
